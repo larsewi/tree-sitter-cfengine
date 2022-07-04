@@ -181,114 +181,88 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   eof = lexer->eof(lexer);
   switch (state) {
     case 0:
-      if (eof) ADVANCE(16);
-      if (lookahead == '#') ADVANCE(23);
-      if (lookahead == '\\') SKIP(15)
-      if (lookahead == 'b') ADVANCE(10);
-      if (lookahead == 't') ADVANCE(12);
-      if (lookahead == '{') ADVANCE(18);
-      if (lookahead == '}') ADVANCE(19);
+      if (eof) ADVANCE(12);
+      if (lookahead == '#') ADVANCE(19);
+      if (lookahead == 'b') ADVANCE(8);
+      if (lookahead == 't') ADVANCE(10);
+      if (lookahead == '{') ADVANCE(14);
+      if (lookahead == '}') ADVANCE(15);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
-          lookahead == '\f' ||
           lookahead == '\r' ||
-          lookahead == ' ' ||
-          lookahead == 8203 ||
-          lookahead == 8288 ||
-          lookahead == 65279) SKIP(0)
+          lookahead == ' ') SKIP(0)
       END_STATE();
     case 1:
-      if (lookahead == '\n') SKIP(3)
-      END_STATE();
-    case 2:
-      if (lookahead == '\n') SKIP(3)
-      if (lookahead == '\r') SKIP(1)
-      END_STATE();
-    case 3:
-      if (lookahead == '#') ADVANCE(23);
-      if (lookahead == '\\') SKIP(2)
+      if (lookahead == '#') ADVANCE(19);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
-          lookahead == '\f' ||
           lookahead == '\r' ||
-          lookahead == ' ' ||
-          lookahead == 8203 ||
-          lookahead == 8288 ||
-          lookahead == 65279) SKIP(3)
+          lookahead == ' ') SKIP(1)
       if (('0' <= lookahead && lookahead <= '9') ||
           ('A' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(22);
+          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(18);
       END_STATE();
-    case 4:
-      if (lookahead == 'd') ADVANCE(13);
-      END_STATE();
-    case 5:
-      if (lookahead == 'd') ADVANCE(8);
-      END_STATE();
-    case 6:
+    case 2:
       if (lookahead == 'd') ADVANCE(11);
       END_STATE();
+    case 3:
+      if (lookahead == 'd') ADVANCE(6);
+      END_STATE();
+    case 4:
+      if (lookahead == 'd') ADVANCE(9);
+      END_STATE();
+    case 5:
+      if (lookahead == 'e') ADVANCE(13);
+      END_STATE();
+    case 6:
+      if (lookahead == 'l') ADVANCE(5);
+      END_STATE();
     case 7:
-      if (lookahead == 'e') ADVANCE(17);
+      if (lookahead == 'n') ADVANCE(3);
       END_STATE();
     case 8:
-      if (lookahead == 'l') ADVANCE(7);
+      if (lookahead == 'o') ADVANCE(2);
+      if (lookahead == 'u') ADVANCE(7);
       END_STATE();
     case 9:
-      if (lookahead == 'n') ADVANCE(5);
+      if (lookahead == 'o') ADVANCE(16);
       END_STATE();
     case 10:
       if (lookahead == 'o') ADVANCE(4);
-      if (lookahead == 'u') ADVANCE(9);
       END_STATE();
     case 11:
-      if (lookahead == 'o') ADVANCE(20);
+      if (lookahead == 'y') ADVANCE(17);
       END_STATE();
     case 12:
-      if (lookahead == 'o') ADVANCE(6);
-      END_STATE();
-    case 13:
-      if (lookahead == 'y') ADVANCE(21);
-      END_STATE();
-    case 14:
-      if (eof) ADVANCE(16);
-      if (lookahead == '\n') SKIP(0)
-      END_STATE();
-    case 15:
-      if (eof) ADVANCE(16);
-      if (lookahead == '\n') SKIP(0)
-      if (lookahead == '\r') SKIP(14)
-      END_STATE();
-    case 16:
       ACCEPT_TOKEN(ts_builtin_sym_end);
       END_STATE();
-    case 17:
+    case 13:
       ACCEPT_TOKEN(anon_sym_bundle);
       END_STATE();
-    case 18:
+    case 14:
       ACCEPT_TOKEN(anon_sym_LBRACE);
       END_STATE();
-    case 19:
+    case 15:
       ACCEPT_TOKEN(anon_sym_RBRACE);
       END_STATE();
-    case 20:
+    case 16:
       ACCEPT_TOKEN(anon_sym_todo);
       END_STATE();
-    case 21:
+    case 17:
       ACCEPT_TOKEN(anon_sym_body);
       END_STATE();
-    case 22:
+    case 18:
       ACCEPT_TOKEN(sym_identifier);
       if (('0' <= lookahead && lookahead <= '9') ||
           ('A' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(22);
+          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(18);
       END_STATE();
-    case 23:
+    case 19:
       ACCEPT_TOKEN(sym_comment);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(23);
+          lookahead != '\n') ADVANCE(19);
       END_STATE();
     default:
       return false;
@@ -310,11 +284,11 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
   [11] = {.lex_state = 0},
   [12] = {.lex_state = 0},
   [13] = {.lex_state = 0},
-  [14] = {.lex_state = 3},
-  [15] = {.lex_state = 3},
+  [14] = {.lex_state = 1},
+  [15] = {.lex_state = 1},
   [16] = {.lex_state = 0},
-  [17] = {.lex_state = 3},
-  [18] = {.lex_state = 3},
+  [17] = {.lex_state = 1},
+  [18] = {.lex_state = 1},
 };
 
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
