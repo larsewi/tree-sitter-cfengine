@@ -1,6 +1,11 @@
 module.exports = grammar({
   name: 'CFEngine',
 
+  extras: $ => [
+    $.comment,
+    /[\s]+/
+  ],
+
   rules: {
     source_file: $ => repeat($.block),
 
@@ -39,6 +44,8 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z0-9_]+/,
 
-    promise_guard: $ => /[a-zA-Z_]+/
+    promise_guard: $ => /[a-zA-Z_]+/,
+
+    comment: $ => token(seq('#', /.*/))
   }
 });

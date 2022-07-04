@@ -124,6 +124,10 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },

@@ -1,5 +1,5 @@
 ==================
-Bundle
+Empty Bundle
 ==================
 
 bundle agent bundle_id {}
