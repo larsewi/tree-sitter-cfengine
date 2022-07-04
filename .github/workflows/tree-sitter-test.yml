@@ -1,0 +1,24 @@
+name: Tree-sitter test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: add nodejs
+      run: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+    - name: install nodejs
+      run: sudo apt-get install -y nodejs
+    - name: install tree-sitter-cli
+      run: npm install --save-dev tree-sitter-cli
+    - name: run tree-sitter test
+      run: ./node_modules/tree-sitter-cli/tree-sitter test
+
