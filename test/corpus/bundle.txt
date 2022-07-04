@@ -1,0 +1,15 @@
+==================
+Bundle
+==================
+
+bundle agent bundle_id {}
+
+---
+
+(source_file
+  (block
+    (bundle
+      bundle_type: (identifier)
+      bundle_id: (identifier)
+      (bundle_body)
+    )))
