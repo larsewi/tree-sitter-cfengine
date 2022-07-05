@@ -1,8 +1,9 @@
 ==================
-Empty bundle
+Argument list
 ==================
 
-bundle agent my_bundle {}
+bundle agent my_bundle(one, two, three) {
+}
 
 ---
 
@@ -11,5 +12,9 @@ bundle agent my_bundle {}
     (bundle
       bundle_type: (identifier)
       bundle_id: (identifier)
+      (argument_list
+        (identifier)
+        (identifier)
+        (identifier))
       (bundle_body)
     )))
