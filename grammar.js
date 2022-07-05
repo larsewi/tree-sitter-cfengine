@@ -49,7 +49,6 @@ module.exports = grammar({
       $.promise_guard,
       repeat1(
         seq(
-          optional($.class_guard),
           $.promise_line,
           ';'
         )
@@ -65,6 +64,7 @@ module.exports = grammar({
     ),
 
     promise_line: $ => seq(
+      optional($.class_guard),
       field('promiser', $.quoted_string),
       optional(seq('->', field('promisee', $.right_value)))
     ),

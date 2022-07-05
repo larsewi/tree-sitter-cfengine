@@ -1,5 +1,5 @@
 ==================
-Promise line with quoted string as promisee
+Quoted string as promisee
 ==================
 
 bundle agent my_bundle {

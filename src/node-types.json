@@ -93,10 +93,6 @@
       "required": true,
       "types": [
         {
-          "type": "class_guard",
-          "named": true
-        },
-        {
           "type": "promise_guard",
           "named": true
         },
@@ -131,6 +127,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "class_guard",
+          "named": true
+        }
+      ]
     }
   },
   {

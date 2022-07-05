@@ -1,5 +1,5 @@
 ==================
-Trailing comma argument list
+Argument list with trailing comma
 ==================
 
 bundle agent my_bundle(one, two, three,) {
