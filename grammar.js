@@ -20,8 +20,24 @@ module.exports = grammar({
       'bundle',
       field('bundle_type', $.identifier),
       field('bundle_id', $.identifier),
-      // TODO: optional($.parameter_list),
+      optional($.argument_list),
       $.bundle_body
+    ),
+
+    argument_list: $ => seq(
+      '(',
+      optional(
+        seq(
+          repeat(
+            seq(
+              $.identifier, ','
+            )
+          ),
+          $.identifier,
+          optional(',')
+        )
+      ),
+      ')'
     ),
 
     bundle_body: $ => seq(
