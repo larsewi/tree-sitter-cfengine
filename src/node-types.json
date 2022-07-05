@@ -111,6 +111,16 @@
     "type": "promise_line",
     "named": true,
     "fields": {
+      "promisee": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "right_value",
+            "named": true
+          }
+        ]
+      },
       "promiser": {
         "multiple": false,
         "required": true,
@@ -121,6 +131,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "right_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "quoted_string",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -148,6 +177,10 @@
   },
   {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "->",
     "named": false
   },
   {

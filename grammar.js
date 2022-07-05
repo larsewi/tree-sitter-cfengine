@@ -47,13 +47,26 @@ module.exports = grammar({
 
     bundle_statement: $ => seq(
       $.promise_guard,
-      optional($.class_guard),
-      $.promise_line,
-      ';'
+      repeat1(
+        seq(
+          optional($.class_guard),
+          $.promise_line,
+          ';'
+        )
+      )
+    ),
+
+    right_value: $ => choice(
+      $.identifier,
+      $.quoted_string
+      // TODO: naked_variable
+      // TODO: list
+      // TODO: function
     ),
 
     promise_line: $ => seq(
-      field('promiser', $.quoted_string)
+      field('promiser', $.quoted_string),
+      optional(seq('->', field('promisee', $.right_value)))
     ),
 
     quoted_string: $ => /\"((\\(.|\n))|[^"\\])*\"|\'((\\(.|\n))|[^'\\])*\'|`[^`]*`/,
