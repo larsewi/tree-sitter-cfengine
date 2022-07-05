@@ -10,11 +10,10 @@ bundle agent my_bundle(one, two, three,) {
 (source_file
   (block
     (bundle
-      bundle_type: (identifier)
-      bundle_id: (identifier)
+      (bundle_type)
+      (bundle_id)
       (argument_list
-        (identifier)
-        (identifier)
-        (identifier))
-      (bundle_body)
-    )))
+        (argument)
+        (argument)
+        (argument))
+      (bundle_body))))

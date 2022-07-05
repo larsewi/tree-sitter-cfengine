@@ -12,12 +12,12 @@ bundle agent my_bundle {
 (source_file
   (block
     (bundle
-      bundle_type: (identifier)
-      bundle_id: (identifier)
+      (bundle_type)
+      (bundle_id)
       (bundle_body
         (bundle_statement
           (promise_guard)
           (promise_line
-            promiser: (quoted_string)
-            promisee: (right_value
+            (promiser)
+            (promisee
               (identifier))))))))

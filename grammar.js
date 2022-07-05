@@ -3,6 +3,7 @@ module.exports = grammar({
 
   extras: $ => [
     $.comment,
+    // TODO: $.macro,
     /[\s]+/
   ],
 
@@ -17,8 +18,8 @@ module.exports = grammar({
 
     bundle: $ => seq(
       'bundle',
-      field('bundle_type', $.identifier),
-      field('bundle_id', $.identifier),
+      alias($.identifier, $.bundle_type),
+      alias($.identifier, $.bundle_id),
       optional($.argument_list),
       $.bundle_body
     ),
@@ -29,10 +30,10 @@ module.exports = grammar({
         seq(
           repeat(
             seq(
-              $.identifier, ','
+              alias($.identifier, $.argument), ','
             )
           ),
-          $.identifier,
+          alias($.identifier, $.argument),
           optional(',')
         )
       ),
@@ -65,8 +66,8 @@ module.exports = grammar({
 
     promise_line: $ => seq(
       optional($.class_guard),
-      field('promiser', $.quoted_string),
-      optional(seq('->', field('promisee', $.right_value)))
+      alias($.quoted_string, $.promiser),
+      optional(seq('->', alias($.right_value, $.promisee)))
     ),
 
     quoted_string: $ => /\"((\\(.|\n))|[^"\\])*\"|\'((\\(.|\n))|[^'\\])*\'|`[^`]*`/,
@@ -77,6 +78,26 @@ module.exports = grammar({
 
     class_guard: $ => /[.|&!()a-zA-Z0-9_:][\t .|&!()a-zA-Z0-9_:]*::/,
 
-    comment: $ => token(seq('#', /.*/))
+    comment: $ => token(seq('#', /.*/)),
+
+//    macro: $ => token(
+//      seq(
+//        seq(
+//          '@if ',
+//          choice(
+//            /minimum_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+//            /maximum_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+//            /before_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+//            /at_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+//            /after_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+//            /between_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2} *, *[0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+//            /feature\([a-zA-Z0-9_]+\)/,
+//          )
+//        ),
+//        optional('@else'),
+//        '@endif'
+//      )
+//    )
+
   }
 });

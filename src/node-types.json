@@ -8,7 +8,7 @@
       "required": false,
       "types": [
         {
-          "type": "identifier",
+          "type": "argument",
           "named": true
         }
       ]
@@ -32,28 +32,7 @@
   {
     "type": "bundle",
     "named": true,
-    "fields": {
-      "bundle_id": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "bundle_type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
@@ -64,6 +43,14 @@
         },
         {
           "type": "bundle_body",
+          "named": true
+        },
+        {
+          "type": "bundle_id",
+          "named": true
+        },
+        {
+          "type": "bundle_type",
           "named": true
         }
       ]
@@ -106,41 +93,28 @@
   {
     "type": "promise_line",
     "named": true,
-    "fields": {
-      "promisee": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "right_value",
-            "named": true
-          }
-        ]
-      },
-      "promiser": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "quoted_string",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "class_guard",
+          "named": true
+        },
+        {
+          "type": "promisee",
+          "named": true
+        },
+        {
+          "type": "promiser",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "right_value",
+    "type": "promisee",
     "named": true,
     "fields": {},
     "children": {
@@ -194,8 +168,20 @@
     "named": false
   },
   {
+    "type": "argument",
+    "named": true
+  },
+  {
     "type": "bundle",
     "named": false
+  },
+  {
+    "type": "bundle_id",
+    "named": true
+  },
+  {
+    "type": "bundle_type",
+    "named": true
   },
   {
     "type": "class_guard",
@@ -211,6 +197,10 @@
   },
   {
     "type": "promise_guard",
+    "named": true
+  },
+  {
+    "type": "promiser",
     "named": true
   },
   {

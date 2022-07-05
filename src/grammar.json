@@ -25,20 +25,22 @@
           "value": "bundle"
         },
         {
-          "type": "FIELD",
-          "name": "bundle_type",
+          "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
-          }
+          },
+          "named": true,
+          "value": "bundle_type"
         },
         {
-          "type": "FIELD",
-          "name": "bundle_id",
+          "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
-          }
+          },
+          "named": true,
+          "value": "bundle_id"
         },
         {
           "type": "CHOICE",
@@ -77,8 +79,13 @@
                     "type": "SEQ",
                     "members": [
                       {
-                        "type": "SYMBOL",
-                        "name": "identifier"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        "named": true,
+                        "value": "argument"
                       },
                       {
                         "type": "STRING",
@@ -88,8 +95,13 @@
                   }
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  "named": true,
+                  "value": "argument"
                 },
                 {
                   "type": "CHOICE",
@@ -190,12 +202,13 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "promiser",
+          "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
             "name": "quoted_string"
-          }
+          },
+          "named": true,
+          "value": "promiser"
         },
         {
           "type": "CHOICE",
@@ -208,12 +221,13 @@
                   "value": "->"
                 },
                 {
-                  "type": "FIELD",
-                  "name": "promisee",
+                  "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
                     "name": "right_value"
-                  }
+                  },
+                  "named": true,
+                  "value": "promisee"
                 }
               ]
             },
