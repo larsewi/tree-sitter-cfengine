@@ -10,8 +10,7 @@ module.exports = grammar({
     source_file: $ => repeat($.block),
 
     block: $ => choice(
-      $.bundle,
-      $.body
+      $.bundle
       // TODO: body
       // TODO: promise
     ),
@@ -47,20 +46,23 @@ module.exports = grammar({
     ),
 
     bundle_statement: $ => seq(
-      'todo'
+      $.promise_guard,
+      optional($.class_guard),
+      $.promise_line,
+      ';'
     ),
 
-    body: $ => seq(
-      'body',
-      field('body_type', $.identifier),
-      field('body_id', $.identifier),
-      // TODO: optional($.parameter_list),
-      // $.bundle_body
+    promise_line: $ => seq(
+      field('promiser', $.quoted_string)
     ),
+
+    quoted_string: $ => /\"((\\(.|\n))|[^"\\])*\"|\'((\\(.|\n))|[^'\\])*\'|`[^`]*`/,
 
     identifier: $ => /[a-zA-Z0-9_]+/,
 
-    promise_guard: $ => /[a-zA-Z_]+/,
+    promise_guard: $ => /[a-zA-Z_]+:/,
+
+    class_guard: $ => /[.|&!()a-zA-Z0-9_:][\t .|&!()a-zA-Z0-9_:]*::/,
 
     comment: $ => token(seq('#', /.*/))
   }

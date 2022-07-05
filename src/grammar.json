@@ -14,10 +14,6 @@
         {
           "type": "SYMBOL",
           "name": "bundle"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "body"
         }
       ]
     },
@@ -144,35 +140,47 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "promise_guard"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "class_guard"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "promise_line"
+        },
+        {
           "type": "STRING",
-          "value": "todo"
+          "value": ";"
         }
       ]
     },
-    "body": {
+    "promise_line": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "body"
-        },
-        {
           "type": "FIELD",
-          "name": "body_type",
+          "name": "promiser",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "body_id",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "name": "quoted_string"
           }
         }
       ]
+    },
+    "quoted_string": {
+      "type": "PATTERN",
+      "value": "\\\"((\\\\(.|\\n))|[^\"\\\\])*\\\"|\\'((\\\\(.|\\n))|[^'\\\\])*\\'|`[^`]*`"
     },
     "identifier": {
       "type": "PATTERN",
@@ -180,7 +188,11 @@
     },
     "promise_guard": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_]+"
+      "value": "[a-zA-Z_]+:"
+    },
+    "class_guard": {
+      "type": "PATTERN",
+      "value": "[.|&!()a-zA-Z0-9_:][\\t .|&!()a-zA-Z0-9_:]*::"
     },
     "comment": {
       "type": "TOKEN",

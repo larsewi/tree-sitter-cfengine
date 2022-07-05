@@ -23,40 +23,10 @@
       "required": true,
       "types": [
         {
-          "type": "body",
-          "named": true
-        },
-        {
           "type": "bundle",
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "body",
-    "named": true,
-    "fields": {
-      "body_id": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "body_type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -117,7 +87,41 @@
   {
     "type": "bundle_statement",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_guard",
+          "named": true
+        },
+        {
+          "type": "promise_guard",
+          "named": true
+        },
+        {
+          "type": "promise_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "promise_line",
+    "named": true,
+    "fields": {
+      "promiser": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quoted_string",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "source_file",
@@ -147,12 +151,16 @@
     "named": false
   },
   {
-    "type": "body",
+    "type": ";",
     "named": false
   },
   {
     "type": "bundle",
     "named": false
+  },
+  {
+    "type": "class_guard",
+    "named": true
   },
   {
     "type": "comment",
@@ -163,8 +171,12 @@
     "named": true
   },
   {
-    "type": "todo",
-    "named": false
+    "type": "promise_guard",
+    "named": true
+  },
+  {
+    "type": "quoted_string",
+    "named": true
   },
   {
     "type": "{",

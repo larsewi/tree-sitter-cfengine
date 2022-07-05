@@ -1,0 +1,21 @@
+==================
+Empty bundle
+==================
+
+bundle agent my_bundle {
+  reports:
+      "Hello World!";
+}
+
+---
+
+(source_file
+  (block
+    (bundle
+      bundle_type: (identifier)
+      bundle_id: (identifier)
+      (bundle_body
+        (bundle_statement
+          (promise_guard)
+          (promise_line
+            promiser: (quoted_string)))))))
