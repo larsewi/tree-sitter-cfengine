@@ -10,14 +10,13 @@ bundle agent my_bundle {
 ---
 
 (source_file
-  (block
-    (bundle
-      (bundle_type)
-      (bundle_id)
-      (bundle_body
-        (bundle_statement
-          (promise_guard)
-          (promise_line
-            (promiser)
-            (promisee
-              (quoted_string))))))))
+  (bundle
+    (bundle_type)
+    (bundle_id)
+    (bundle_body
+      (bundle_statement
+        (promise_guard)
+        (promise_line
+          (promiser)
+          (promisee
+            (quoted_string)))))))

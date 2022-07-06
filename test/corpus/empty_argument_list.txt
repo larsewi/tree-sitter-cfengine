@@ -8,9 +8,8 @@ bundle agent my_bundle() {
 ---
 
 (source_file
-  (block
-    (bundle
-      (bundle_type)
-      (bundle_id)
-      (argument_list)
-      (bundle_body))))
+  (bundle
+    (bundle_type)
+    (bundle_id)
+    (argument_list)
+    (bundle_body)))

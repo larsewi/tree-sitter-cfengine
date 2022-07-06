@@ -3,14 +3,14 @@ module.exports = grammar({
 
   extras: $ => [
     $.comment,
-    // TODO: $.macro,
+    $.macro,
     /[\s]+/
   ],
 
   rules: {
-    source_file: $ => repeat($.block),
+    source_file: $ => repeat($._block),
 
-    block: $ => choice(
+    _block: $ => choice(
       $.bundle
       // TODO: body
       // TODO: promise
@@ -80,24 +80,23 @@ module.exports = grammar({
 
     comment: $ => token(seq('#', /.*/)),
 
-//    macro: $ => token(
-//      seq(
-//        seq(
-//          '@if ',
-//          choice(
-//            /minimum_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-//            /maximum_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-//            /before_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-//            /at_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-//            /after_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-//            /between_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2} *, *[0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-//            /feature\([a-zA-Z0-9_]+\)/,
-//          )
-//        ),
-//        optional('@else'),
-//        '@endif'
-//      )
-//    )
+    macro: $ => token(
+      choice(
+        seq(
+          '@if ',
+          choice(
+            seq(
+              choice('minimum', 'maximum', 'before', 'at', 'after'),
+              /_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/
+            ),
+            /between_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2} *, *[0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
+            /feature\([a-zA-Z0-9_]+\)/,
+          )
+        ),
+        '@else',
+        '@endif'
+      )
+    )
 
   }
 });

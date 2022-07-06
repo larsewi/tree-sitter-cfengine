@@ -5,10 +5,10 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "block"
+        "name": "_block"
       }
     },
-    "block": {
+    "_block": {
       "type": "CHOICE",
       "members": [
         {
@@ -269,12 +269,88 @@
           }
         ]
       }
+    },
+    "macro": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "@if "
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "minimum"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "maximum"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "before"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "at"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "after"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "_version\\([0-9]{1,5}(\\.[0-9]{1,5}){0,2}\\)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "between_version\\([0-9]{1,5}(\\.[0-9]{1,5}){0,2} *, *[0-9]{1,5}(\\.[0-9]{1,5}){0,2}\\)"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "feature\\([a-zA-Z0-9_]+\\)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "@else"
+          },
+          {
+            "type": "STRING",
+            "value": "@endif"
+          }
+        ]
+      }
     }
   },
   "extras": [
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "macro"
     },
     {
       "type": "PATTERN",
