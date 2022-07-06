@@ -80,23 +80,7 @@ module.exports = grammar({
 
     comment: $ => token(seq('#', /.*/)),
 
-    macro: $ => token(
-      choice(
-        seq(
-          '@if ',
-          choice(
-            seq(
-              choice('minimum', 'maximum', 'before', 'at', 'after'),
-              /_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/
-            ),
-            /between_version\([0-9]{1,5}(\.[0-9]{1,5}){0,2} *, *[0-9]{1,5}(\.[0-9]{1,5}){0,2}\)/,
-            /feature\([a-zA-Z0-9_]+\)/,
-          )
-        ),
-        '@else',
-        '@endif'
-      )
-    )
-
+    macro: $ => token(/@[^\n].*/)
   }
-});
+
+})
